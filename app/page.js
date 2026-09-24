@@ -86,36 +86,36 @@ function DashboardContent() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto pb-20">
-      <div className="flex flex-col mb-12 text-left">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-700 bg-slate-800/40 text-sm font-semibold text-slate-200 mb-6 w-max backdrop-blur-sm">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
-          <span className="text-cyan-400">✨</span> AI-native quality intelligence, live in production
-        </div>
-        
-        <h2 className="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6 leading-[1.1]">
-          AI–Powered <span className="text-cyan-400">Unified</span><br className="hidden md:block"/>
-          <span className="text-cyan-400">Quality Platform</span><br className="hidden md:block"/>
-          for Regulated<br className="hidden md:block"/>
-          Manufacturing
-        </h2>
-        
-        <p className="text-slate-300 max-w-3xl text-lg leading-relaxed mb-8">
-          Digitize Quality, Laboratory, Manufacturing, Asset Management and Compliance with one integrated platform designed for Pharmaceutical, Automotive, FMCG, Food & Beverage, Chemical and Medical Device manufacturers.
-        </p>
-
-        <div className="flex flex-wrap items-center gap-6">
-          <button 
-            onClick={handleAdd}
-            className="bg-[#00a3e0] text-white px-8 py-3.5 rounded-full flex items-center gap-2 hover:bg-cyan-500 transition font-bold shadow-[0_0_20px_rgba(0,163,224,0.3)]"
-          >
-            Add Product <span className="ml-1 text-xl">→</span>
-          </button>
+      <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-10 text-center md:text-left">
+        <div className="flex-1">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-slate-700 bg-slate-800/40 text-xs font-semibold text-slate-300 mb-4 backdrop-blur-sm mx-auto md:mx-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></span>
+            <span className="text-cyan-400">✨</span> AI-native quality intelligence, live in production
+          </div>
           
-          <button className="flex items-center gap-3 text-white font-semibold hover:text-cyan-400 transition group">
-            <span className="flex items-center justify-center w-12 h-12 rounded-full border border-slate-500 bg-slate-800/50 group-hover:bg-slate-700/50 transition">
-              <span className="ml-1 text-sm">▶</span>
+          <h2 className="text-4xl font-extrabold text-white tracking-tight mb-2">
+            AI–Powered <span className="text-cyan-400">Unified Quality Platform</span><br className="hidden md:block" />
+            for Regulated Manufacturing
+          </h2>
+          
+          <p className="text-slate-400 max-w-2xl text-sm md:text-base mx-auto md:mx-0">
+            Digitize Quality, Laboratory, Manufacturing, Asset Management and Compliance with one integrated platform designed for Pharmaceutical, Automotive, FMCG, Food & Beverage, Chemical and Medical Device manufacturers.
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
+          <button className="flex items-center gap-2 text-slate-300 text-sm font-semibold hover:text-cyan-400 transition group">
+            <span className="flex items-center justify-center w-8 h-8 rounded-full border border-slate-500 bg-slate-800/50 group-hover:bg-slate-700/50 transition">
+              <span className="ml-0.5 text-[10px]">▶</span>
             </span>
             Watch the Film
+          </button>
+
+          <button 
+            onClick={handleAdd}
+            className="bg-cyan-600 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:bg-cyan-500 transition font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)] whitespace-nowrap"
+          >
+            <Plus size={18}/> Add Product
           </button>
         </div>
       </div>
