@@ -12,7 +12,7 @@ export const useUrlState = () => {
     
     return {
       page: isNaN(pageVal) || pageVal < 1 ? 1 : pageVal,
-      limit: [10, 20, 50].includes(limitVal) ? limitVal : 10,
+      limit: [2, 5, 10, 20, 50].includes(limitVal) ? limitVal : 5,
       search: searchParams.get('q') || '',
       category: searchParams.get('category') || '',
       sortBy: searchParams.get('sortBy') || '',

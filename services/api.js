@@ -23,7 +23,19 @@ export const getProducts = async ({ skip = 0, limit = 10, search = '', category 
   }
 
   const response = await api.get(url, { params, signal });
-  return response.data;
+  
+  // Artificially cap total products to 6 as requested
+  const MAX_PRODUCTS = 6;
+  let products = response.data.products;
+  let total = Math.min(response.data.total, MAX_PRODUCTS);
+  
+  if (skip >= MAX_PRODUCTS) {
+      products = [];
+  } else if (products.length > (MAX_PRODUCTS - skip)) {
+      products = products.slice(0, MAX_PRODUCTS - skip);
+  }
+
+  return { ...response.data, products, total };
 };
 
 export const getCategories = async () => {

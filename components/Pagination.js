@@ -17,6 +17,8 @@ export default function Pagination({ total, limit, page, onPageChange, onLimitCh
           value={limit}
           onChange={(e) => onLimitChange(Number(e.target.value))}
         >
+          <option value={2}>2 per page</option>
+          <option value={5}>5 per page</option>
           <option value={10}>10 per page</option>
           <option value={20}>20 per page</option>
           <option value={50}>50 per page</option>
