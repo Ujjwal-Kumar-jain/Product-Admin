@@ -104,13 +104,6 @@ function DashboardContent() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-          <button className="flex items-center gap-2 text-slate-300 text-sm font-semibold hover:text-cyan-400 transition group">
-            <span className="flex items-center justify-center w-8 h-8 rounded-full border border-slate-500 bg-slate-800/50 group-hover:bg-slate-700/50 transition">
-              <span className="ml-0.5 text-[10px]">▶</span>
-            </span>
-            Watch the Film
-          </button>
-
           <button 
             onClick={handleAdd}
             className="bg-cyan-600 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:bg-cyan-500 transition font-bold shadow-[0_0_20px_rgba(6,182,212,0.4)] whitespace-nowrap"
