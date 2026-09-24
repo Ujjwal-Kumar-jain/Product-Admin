@@ -42,47 +42,47 @@ export default function ProductModal({ product, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md overflow-hidden">
-        <div className="flex justify-between items-center p-4 border-b">
-          <h3 className="text-lg font-bold">{isEdit ? 'Edit Product' : 'Add Product'}</h3>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+    <div className="fixed inset-0 bg-[#0b1120]/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-slate-800 rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-700">
+        <div className="flex justify-between items-center p-5 border-b border-slate-700/60 bg-slate-900/50">
+          <h3 className="text-xl font-bold text-white">{isEdit ? 'Edit Product' : 'Add Product'}</h3>
+          <button onClick={onClose} className="text-slate-400 hover:text-white transition bg-slate-800 p-1.5 rounded-full hover:bg-slate-700">
             <X size={20} />
           </button>
         </div>
         
-        <form onSubmit={handleSubmit} className="p-4 space-y-4">
-          {error && <div className="bg-red-50 text-red-600 p-2 text-sm rounded">{error}</div>}
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          {error && <div className="bg-red-900/50 border border-red-500/50 text-red-200 p-3 text-sm rounded-lg">{error}</div>}
           
           <div>
-            <label className="block text-sm font-medium mb-1">Title</label>
-            <input required name="title" value={formData.title} onChange={handleChange} className="w-full border rounded p-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Title</label>
+            <input required name="title" value={formData.title} onChange={handleChange} className="w-full bg-slate-900 border border-slate-700 text-white p-3 rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none transition" />
           </div>
           
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium mb-1">Price ($)</label>
-              <input required type="number" min="0" step="0.01" name="price" value={formData.price} onChange={handleChange} className="w-full border rounded p-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Price ($)</label>
+              <input required type="number" min="0" step="0.01" name="price" value={formData.price} onChange={handleChange} className="w-full bg-slate-900 border border-slate-700 text-white p-3 rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none transition" />
             </div>
             <div className="flex-1">
-              <label className="block text-sm font-medium mb-1">Stock</label>
-              <input required type="number" min="0" name="stock" value={formData.stock} onChange={handleChange} className="w-full border rounded p-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+              <label className="block text-sm font-semibold text-slate-300 mb-2">Stock</label>
+              <input required type="number" min="0" name="stock" value={formData.stock} onChange={handleChange} className="w-full bg-slate-900 border border-slate-700 text-white p-3 rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none transition" />
             </div>
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1">Category</label>
-            <input required name="category" value={formData.category} onChange={handleChange} className="w-full border rounded p-2 focus:ring-1 focus:ring-blue-500 outline-none" />
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Category</label>
+            <input required name="category" value={formData.category} onChange={handleChange} className="w-full bg-slate-900 border border-slate-700 text-white p-3 rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none transition" />
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
-            <textarea name="description" value={formData.description} onChange={handleChange} className="w-full border rounded p-2 focus:ring-1 focus:ring-blue-500 outline-none" rows="3"></textarea>
+            <label className="block text-sm font-semibold text-slate-300 mb-2">Description</label>
+            <textarea name="description" value={formData.description} onChange={handleChange} className="w-full bg-slate-900 border border-slate-700 text-white p-3 rounded-xl focus:ring-2 focus:ring-cyan-500 outline-none transition" rows="3"></textarea>
           </div>
           
-          <div className="flex justify-end gap-2 pt-4">
-            <button type="button" onClick={onClose} className="px-4 py-2 border rounded text-gray-700 hover:bg-gray-50">Cancel</button>
-            <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
+          <div className="flex justify-end gap-3 pt-4 border-t border-slate-700/60">
+            <button type="button" onClick={onClose} className="px-5 py-2.5 rounded-full text-slate-300 hover:text-white hover:bg-slate-700 font-medium transition">Cancel</button>
+            <button type="submit" disabled={loading} className="px-6 py-2.5 bg-cyan-600 text-white rounded-full hover:bg-cyan-500 disabled:opacity-50 font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] transition">
               {loading ? 'Saving...' : 'Save'}
             </button>
           </div>
