@@ -17,7 +17,7 @@ function DashboardContent() {
   const { getParams, updateParams } = useUrlState();
   const params = getParams();
   
-  const [searchInput, setSearchInput] = useState(params.search);
+  const [searchInput, setSearchInput] = useState(params.search || '');
   const debouncedSearch = useDebounce(searchInput, 500);
   
   const [categories, setCategories] = useState([]);
@@ -25,6 +25,11 @@ function DashboardContent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [deletingProduct, setDeletingProduct] = useState(null);
+  
+  // Sync search input if URL changes externally (e.g. back button)
+  useEffect(() => {
+    setSearchInput(params.search || '');
+  }, [params.search]);
   
   useEffect(() => {
     if (debouncedSearch !== params.search) {
@@ -46,12 +51,28 @@ function DashboardContent() {
     sortBy: params.sortBy
   });
 
-  const { applyLocalMutations, addedProducts } = useProductContext();
+  const { applyLocalMutations, addedProducts, deletedIds } = useProductContext();
   
   let products = applyLocalMutations(data.products || []);
-  if (params.page === 1 && !params.search && !params.category) {
-    products = [...addedProducts, ...products];
+  
+  // Filter added products locally so search & category apply to them too
+  let localAdded = [...addedProducts];
+  if (params.search) {
+    const q = params.search.toLowerCase();
+    localAdded = localAdded.filter(p => p.title.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q)));
   }
+  if (params.category) {
+    localAdded = localAdded.filter(p => p.category === params.category);
+  }
+
+  // Prepend local products on the first page
+  if (params.page === 1) {
+    products = [...localAdded, ...products];
+  }
+
+  // Calculate true total by subtracting deleted items from this view
+  const deletedInThisView = (data.products || []).filter(p => deletedIds.has(p.id)).length;
+  const finalTotal = data.total - deletedInThisView + localAdded.length;
   
   const handleEdit = (product) => {
     setEditingProduct(product);
@@ -217,7 +238,7 @@ function DashboardContent() {
           </div>
 
           <Pagination 
-            total={data.total + addedProducts.length} 
+            total={finalTotal} 
             limit={params.limit} 
             page={params.page} 
             onPageChange={(page) => updateParams({ page })}
